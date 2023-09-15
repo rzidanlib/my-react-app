@@ -8,6 +8,10 @@ import ErrorPage from "./Pages/404";
 import ProductsPage from "./Pages/products";
 import ProfilePage from "./Pages/profile";
 import DetailProductPage from "./Pages/detailProduct";
+import { Provider } from "react-redux";
+import store from "./redux/store";
+import Navbar from "./components/Layouts/Navbar";
+import DarkModeContextProvider from "./context/DarkMode";
 
 const router = createBrowserRouter([
   { path: "/", element: <div>Hello World!</div>, errorElement: <ErrorPage /> },
@@ -20,6 +24,11 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router}></RouterProvider>
+    <Provider store={store}>
+      {/* <Navbar /> */}
+      <DarkModeContextProvider>
+        <RouterProvider router={router} />
+      </DarkModeContextProvider>
+    </Provider>
   </React.StrictMode>
 );
